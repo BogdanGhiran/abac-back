@@ -24,12 +24,14 @@ namespace XPAND.Planets.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<List<Planet>> Get()
         {
             return await _planetRepository.GetPlanetsWithVisitingCrews();
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{id}")]
         public async Task<Planet> GetById(int id)
         {
@@ -39,6 +41,7 @@ namespace XPAND.Planets.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -48,6 +51,7 @@ namespace XPAND.Planets.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody]UpdatePlanetViewModel viewModel)
         {
             await _planetService.UpdatePlanetAfterVisit(viewModel);
@@ -56,6 +60,7 @@ namespace XPAND.Planets.API.Controllers
         }
 
         [HttpPatch]
+        [Authorize]
         public async Task<IActionResult> SetRouteToPlanet([FromBody]SetPlanetRouteViewModel viewModel)
         {
             await _planetService.SetRouteToPlanet(viewModel.Id, viewModel.CaptainIdentifier);
@@ -64,6 +69,7 @@ namespace XPAND.Planets.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Planet planetViewModel)
         {
             try

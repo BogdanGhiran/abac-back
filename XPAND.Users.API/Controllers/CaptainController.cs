@@ -34,6 +34,7 @@ namespace XPAND.Captains.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult DefaultPage()
         {
             return Content("Service is up and running");

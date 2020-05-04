@@ -35,6 +35,10 @@ namespace Common.ExceptionHandling
             {
                 code = HttpStatusCode.Conflict;
             }
+            if (ex is UserAlreadyExistsException)
+            {
+                code = HttpStatusCode.Conflict;
+            }
 
             var result = JsonConvert.SerializeObject(new {error = ex.Message});
             context.Response.ContentType = "application/json";

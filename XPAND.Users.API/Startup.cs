@@ -58,8 +58,8 @@ namespace XPAND.Captains.API
                         IssuerSigningKey = new SymmetricSecurityKey(jwtSecret),
                         ValidateIssuer = false,
                         ValidateAudience = false,
-                        RequireExpirationTime = true,
-                        ValidateLifetime = true
+                        RequireExpirationTime = false,
+                        ValidateLifetime = false
                     };
                 });
 
@@ -78,6 +78,8 @@ namespace XPAND.Captains.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
